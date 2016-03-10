@@ -6,9 +6,24 @@
         <div class="card-panel grey">
           <span class="white-text">Welcome to Theon's List, where you can list and purchase nearly everything
               imaginable in Westeros!
-
           </span>
         </div>
       </div>
-    </div>
+
+      <div class="col s6 m6">
+          Categories:
+          <ul>
+          {% for category in object_list %}
+              <li>{{ category }}</li>
+              <ul>
+                  {% for sub in category.subcategory_set.all %}
+                  <li>{{ sub }}</li>
+                      {% endfor %}
+              </ul>
+          {% endfor %}
+          </ul>
+
+      </div>
+
+</div>
 {% endblock content %}

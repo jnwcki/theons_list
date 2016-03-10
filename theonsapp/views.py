@@ -1,16 +1,14 @@
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
-
-# Create your views here.
 from django.views.generic import TemplateView, CreateView, ListView
 from theonsapp.forms import NewUserCreation
-from theonsapp.models import Item
+from theonsapp.models import Item, SubCategory, Category
 
 
-class IndexView(TemplateView):
+class IndexView(ListView):
     template_name = 'index.html'
-
+    model = Category
 
 class UserCreateView(CreateView):
     model = User
@@ -31,17 +29,17 @@ class UserCreateView(CreateView):
 class MakeListingView(CreateView):
     model = Item
     fields = ['name', 'full_description']
-    """
+
     def form_valid(self, form):
         post = form.save(commit=False)
-        post.sub_category = Subcategory.objects.get(pk=self.kwargs.get(subcategory_id))
+        post.sub_category = SubCategory.objects.get(pk=self.kwargs.get(subcategory_id))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['subcategory'] = Subcategory.objects.get(pk=self.kwargs.get(subcategory_id))
+        context['subcategory'] = SubCategory.objects.get(pk=self.kwargs.get(subcategory_id))
         return context
 
+
 class CategoryListView(ListView):
-    #model = Category
-    pass
-    """
+    model = Category
+
