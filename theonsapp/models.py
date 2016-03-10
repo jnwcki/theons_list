@@ -40,7 +40,7 @@ class Item(models.Model):
     name = models.CharField(max_length=100)
     full_description = models.TextField()
     time_listed = models.DateTimeField(auto_now_add=True)
-    photo = models.ImageField(upload_to='uploads', null=True, blank=True)
+    photo = models.ImageField(upload_to='uploads', default='uploads/default.png')
     price = models.IntegerField()
     subcategory = models.ForeignKey(SubCategory)
 

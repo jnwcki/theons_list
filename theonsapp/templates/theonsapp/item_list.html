@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<div>Order by: <a href="{% url 'sub_item_list' subcategory.pk 1 %}">Date Listed</a>
-    <a href="{% url 'sub_item_list' subcategory.pk 2 %}">Highest Price</a>
-    <a href="{% url 'sub_item_list' subcategory.pk 3 %}">Lowest Price</a>
+<div>Order by: <a href="{% url 'sub_item_list' subcategory.pk 1 %}"><span class="label label-default">Date Listed</span></a>
+    <a href="{% url 'sub_item_list' subcategory.pk 2 %}"><span class="label label-primary">Highest Price</span></a>
+    <a href="{% url 'sub_item_list' subcategory.pk 3 %}"><span class="label label-success">Lowest Price</span></a>
 </div>
     <ul>
     <h3>{{ subcategory }}</h3>
     {% for item in item_list %}
-    <li><a href="{% url 'item_detail' item.pk %}">{{ item }}, ${{ item.price }}, {{ item.time_listed }}</a></li>
+    <li><a href="{% url 'item_detail' item.pk %}"><img src="{{ item.photo.url|default_if_none:"#" }}" alt="photo" height="50">{{ item }}, ${{ item.price }}, {{ item.time_listed }}</a></li>
 
     {% endfor %}
 </ul>
