@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>Order by: <a href="{% url 'sub_item_list' subcategory.pk 1 %}">Date Listed</a>
+    <a href="{% url 'sub_item_list' subcategory.pk 2 %}">Highest Price</a>
+    <a href="{% url 'sub_item_list' subcategory.pk 3 %}">Lowest Price</a>
+</div>
+    <ul>
+    <h3>{{ subcategory }}</h3>
+    {% for item in item_list %}
+    <li><a href="{% url 'item_detail' item.pk %}">{{ item }}, ${{ item.price }}, {{ item.time_listed }}</a></li>
+
+    {% endfor %}
+</ul>
+{% endblock %}

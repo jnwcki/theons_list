@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <ul>
+<li>    Title: {{ object.name }}</li>
+<li>Seller: {{ object.seller }}</li>
+   <li>    Price: {{ object.price }}</li>
+   <li>    Listed On: {{ object.time_listed }}</li>
+   <li>    Location: {{ object.location }}</li>
+   <li>    Description: {{ object.full_description }}</li>
+<li>    Photo: <img src="{{ object.photo.url }}" alt="">
+</li>
+    </ul>
+{% endblock %}
