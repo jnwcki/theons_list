@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col s12 m8 l4">
+        <div class="card-panel">
+            <span class="default">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <br>
+                    <button class="btn waves-effect waves-default grey" type="submit" name="action">Login</button>
+                </form>
+            </span>
+        </div>
+    </div>
+</div>

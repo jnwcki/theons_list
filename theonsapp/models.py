@@ -10,6 +10,14 @@ class City(models.Model):
     def __str__(self):
         return self.city_name
 
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+
+
+class SubCategory(models.Model):
+    name = models.CharField(max_length=50)
+    category = models.ForeignKey(Category)
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField("auth.User")
@@ -25,9 +33,9 @@ class Item(models.Model):
     name = models.CharField(max_length=100)
     full_description = models.TextField()
     time_listed = models.DateTimeField(auto_now_add=True)
-    photo = models.ImageField(blank=True)
+    photo = models.ImageField(upload_to='uploads', null=True, blank=True)
     price = models.IntegerField()
-
+    subcategory = models.ForeignKey(SubCategory)
     def __str__(self):
         return self.name
 
@@ -38,5 +46,4 @@ def user_profile_create(sender, **kwargs):
     if created:
         instance = kwargs.get("instance")
         UserProfile.objects.create(user=instance)
-
 

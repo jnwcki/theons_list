@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
+from theonsapp.models import City
 
 
 class NewUserCreation(UserCreationForm):
-    screen_name = forms.CharField()
+    home_city = forms.ModelChoiceField(queryset=City.objects.all())
