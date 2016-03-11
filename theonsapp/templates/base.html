@@ -8,9 +8,8 @@
 <body>
 <div class="container">
 <ul class="nav nav-pills">
-    <li role="presentation" class="active"><a href="{% url 'index' %}">Theon's List</a></li>
+    <li role="presentation" class="active"><a href="{% url 'index' %}">Theon's List Home</a></li>
         {% if user.is_authenticated %}
-            <li role="presentation"><a href="">Sell</a></li>
             <li role="presentation"><a href="{% url 'logout' %}">Log Out</a></li>
         {% else %}
             <li role="presentation"><a href="{% url 'login' %}">Log In</a></li>
