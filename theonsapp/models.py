@@ -47,11 +47,12 @@ class Item(models.Model):
     def __str__(self):
         return self.name
 
-
+"""
 @receiver(post_save, sender="auth.User")
 def user_profile_create(sender, **kwargs):
     created = kwargs.get("created")
+    print(kwargs.get("instance"))
     if created:
         instance = kwargs.get("instance")
         UserProfile.objects.create(user=instance)
-
+"""

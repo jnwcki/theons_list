@@ -16,6 +16,13 @@ class UserCreateView(CreateView):
     model = User
     form_class = NewUserCreation
 
+    def form_valid(self, form):
+        user_object = form.save()
+        city = form.cleaned_data.get("home_city")
+        profile = UserProfile.objects.create(user=user_object, home_city=city)
+        profile.save()
+        return super().form_valid(form)
+
     def get_success_url(self):
         return reverse('login')
 
