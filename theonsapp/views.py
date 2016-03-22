@@ -1,10 +1,13 @@
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, ListView, DetailView
+from django.views.generic import CreateView, ListView, DetailView, View
+from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView, RetrieveAPIView, \
+    ListCreateAPIView
 from theonsapp.forms import NewUserCreation
 from theonsapp.models import Item, SubCategory, Category, City, UserProfile
+from theonsapp.permissions import IsOwnerOrReadOnly
+from theonsapp.serializers import CategorySerializer, SubCategorySerializer, PostSerializer, UserSerializer
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 
 class IndexView(ListView):
@@ -66,7 +69,6 @@ class SubCategoryItemView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['subcategory'] = SubCategory.objects.get(pk=self.kwargs.get('pk'))
-        #print(ordering)
         print(self.kwargs.get('ordering', 1))
         if self.kwargs.get('ordering') == '1':
             context['item_list'] = Item.objects.filter(subcategory_id=self.kwargs.get('pk')).order_by("-time_listed")
@@ -80,3 +82,57 @@ class SubCategoryItemView(ListView):
 
 class ItemDetailView(DetailView):
     model = Item
+
+
+class ListCategoryAPIView(ListAPIView):
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
+
+
+class ListSubCategoryAPIView(ListAPIView):
+    serializer_class = SubCategorySerializer
+    queryset = SubCategory.objects.all()
+
+
+class ListPostSubCategoryAPIView(ListAPIView):
+    serializer_class = PostSerializer
+
+    def get_queryset(self):
+        captured_pk = self.kwargs['pk']
+        return Item.objects.filter(subcategory_id=captured_pk)
+
+
+class ListPostCategoryAPIView(ListAPIView):
+    serializer_class = PostSerializer
+
+    def get_queryset(self):
+        captured_pk = self.kwargs['pk']
+        return Item.objects.filter(subcategory__category_id=captured_pk)
+
+
+class DetailPostAPIView(RetrieveUpdateDestroyAPIView):
+    serializer_class = PostSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly,
+                          )
+    queryset = Item.objects.all()
+
+
+class CreatePostAPIView(CreateAPIView):
+    serializer_class = PostSerializer
+    queryset = Item.objects.all()
+    permission_classes = (IsAuthenticated,)
+
+
+class RetrieveCategoryAPIView(RetrieveAPIView):
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
+
+
+class RetrieveSubCategoryAPIView(RetrieveAPIView):
+    serializer_class = CategorySerializer
+    queryset = SubCategory.objects.all()
+
+
+class UserCreateAPIView(CreateAPIView):
+    serializer_class = UserSerializer

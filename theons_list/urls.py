@@ -1,23 +1,9 @@
-"""theons_list URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.9/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
 from django.conf.urls import url
 from django.contrib import admin
 from theons_list import settings
 from theonsapp.views import IndexView, UserCreateView, CategoryDetailView, SubCategoryItemView, ItemDetailView, \
-    MakeListingView
+    MakeListingView, ListCategoryAPIView, ListSubCategoryAPIView, ListPostSubCategoryAPIView, ListPostCategoryAPIView, \
+    DetailPostAPIView, CreatePostAPIView, RetrieveCategoryAPIView, RetrieveSubCategoryAPIView, UserCreateAPIView
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -30,5 +16,16 @@ urlpatterns = [
     url(r'^category/(?P<pk>\d+)', CategoryDetailView.as_view(), name="category_detail"),
     url(r'^subcategory/(?P<pk>\d+)/(?P<ordering>\d)', SubCategoryItemView.as_view(), name='sub_item_list'),
     url(r'^item_detail/(?P<pk>\d+)', ItemDetailView.as_view(), name='item_detail'),
-    url(r'^create_listing/(?P<pk>\d+)', MakeListingView.as_view(), name='create_listing')
+    url(r'^create_listing/(?P<pk>\d+)', MakeListingView.as_view(), name='create_listing'),
+    url(r'^api/categories/', ListCategoryAPIView.as_view(), name='category_api_view'),
+    url(r'^api/subcategories/', ListSubCategoryAPIView.as_view(), name='subcategory_api_view'),
+    url(r'^api/subcategory/(?P<pk>\d+)/posts/', ListPostSubCategoryAPIView.as_view(), name='post_by_subcategory_api_view'),
+    url(r'^api/category/(?P<pk>\d+)/posts/', ListPostCategoryAPIView.as_view(), name='post_by_category_api_view'),
+    url(r'^api/post/(?P<pk>\d+)', DetailPostAPIView.as_view(), name='post_api_view'),
+    url(r'^api/post/create/', CreatePostAPIView.as_view(), name='post_api_view'),
+    url(r'^api/category/(?P<pk>\d+)/details/', RetrieveCategoryAPIView.as_view(), name='retrieve_category_api_view'),
+    url(r'^api/subcategory/(?P<pk>\d+)/details/', RetrieveSubCategoryAPIView.as_view(), name='retrieve_subcategory_api_view'),
+    url(r'^api/user/', UserCreateAPIView.as_view(), name='user_create_view')
+
+
     ]
