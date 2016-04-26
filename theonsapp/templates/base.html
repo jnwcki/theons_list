@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Theon's List</title>
 </head>
 <body>
 <div class="container">
-<ul class="nav nav-pills">
-    <li role="presentation" class="active"><a href="{% url 'index' %}">Theon's List Home</a></li>
-        {% if user.is_authenticated %}
-            <li role="presentation"><a href="{% url 'logout' %}">Log Out</a></li>
-        {% else %}
-            <li role="presentation"><a href="{% url 'login' %}">Log In</a></li>
-            <li role="presentation"><a href="{% url 'signup' %}">Sign Up</a></li>
+  <nav>
+      <div class="nav-wrapper brown darken-4 z-depth-1">
+        <a href="{% url 'index' %}" class="brand-logo">Theon's List</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'logout' %}">Log Out</a></li>
+          {% else %}
+          <li><a href="{% url 'login' %}">Log In</a></li>
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          {% endif %}
 
-        {% endif %}
-</ul>
+        </ul>
+      </div>
+    </nav>
 
-{% block content %}{% endblock %}
+{% block content %}
+{% endblock %}
 
 </div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 </body>
 </html>

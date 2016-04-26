@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from django.db import models
 from django.conf import settings
 from django.db.models.signals import post_save
@@ -15,6 +14,8 @@ class City(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
+    photo = models.ImageField(upload_to='uploads/categories',
+                              default='uploads/default.png')
 
     def __str__(self):
         return self.name
@@ -42,7 +43,8 @@ class Item(models.Model):
     name = models.CharField(max_length=100)
     full_description = models.TextField()
     time_listed = models.DateTimeField(auto_now_add=True)
-    photo = models.ImageField(upload_to='uploads', default='uploads/default.png')
+    photo = models.ImageField(upload_to='uploads',
+                              default='uploads/default.png')
     price = models.IntegerField()
     subcategory = models.ForeignKey(SubCategory)
 
