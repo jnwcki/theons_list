@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block navbar %}
+{% include 'category_breadcrumb_navbar_include.html' %}
+{% endblock %}
+
 {% block content %}
     <h3>Category {{ category }}</h3>
 

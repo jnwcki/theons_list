@@ -41,7 +41,6 @@ class MakeListingView(CreateView):
         user_profile = UserProfile.objects.get(user=self.request.user)
         post.location = City.objects.get(pk=user_profile.home_city.pk)
         post.seller_id = user_profile.user.pk
-        print(user_profile)
         post.save()
         return super().form_valid(form)
 
@@ -69,14 +68,12 @@ class SubCategoryItemView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['subcategory'] = SubCategory.objects.get(pk=self.kwargs.get('pk'))
-        print(self.kwargs.get('ordering', 1))
         if self.kwargs.get('ordering') == '1':
             context['item_list'] = Item.objects.filter(subcategory_id=self.kwargs.get('pk')).order_by("-time_listed")
         elif self.kwargs.get('ordering') == '2':
             context['item_list'] = Item.objects.filter(subcategory_id=self.kwargs.get('pk')).order_by("-price")
         elif self.kwargs.get('ordering') == '3':
             context['item_list'] = Item.objects.filter(subcategory_id=self.kwargs.get('pk')).order_by("price")
-        print(context)
         return context
 
 
