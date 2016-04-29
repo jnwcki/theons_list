@@ -24,6 +24,8 @@ class Category(models.Model):
 class SubCategory(models.Model):
     name = models.CharField(max_length=50)
     category = models.ForeignKey(Category)
+    photo = models.ImageField(upload_to='uploads/subcategories',
+                              default='uploads/default.png')
 
     def __str__(self):
         return self.name
