@@ -48,7 +48,8 @@ class MakeListingView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['subcategory'] = SubCategory.objects.get(pk=self.kwargs.get('pk'))
+        pk = self.kwargs.get('pk')
+        context['subcategory'] = SubCategory.objects.get(pk=pk)
         return context
 
     def get_success_url(self):
@@ -60,7 +61,8 @@ class CategoryDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['category'] = Category.objects.get(pk=self.kwargs.get('pk'))
+        pk = self.kwargs.get('pk')
+        context['category'] = Category.objects.get(pk=pk)
         return context
 
 
@@ -69,13 +71,21 @@ class SubCategoryItemView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['subcategory'] = SubCategory.objects.get(pk=self.kwargs.get('pk'))
+        sub = self.kwargs.get('pk')
+        context['subcategory'] = SubCategory.objects.get(pk=sub)
         if self.kwargs.get('ordering') == '1':
-            context['item_list'] = Item.objects.filter(subcategory_id=self.kwargs.get('pk')).order_by("-time_listed")
+            item_list = Item.objects.filter(
+                                            subcategory_id=sub
+                                            ).order_by("-time_listed")
         elif self.kwargs.get('ordering') == '2':
-            context['item_list'] = Item.objects.filter(subcategory_id=self.kwargs.get('pk')).order_by("-price")
+            item_list = Item.objects.filter(
+                                            subcategory_id=sub
+                                            ).order_by("-price")
         elif self.kwargs.get('ordering') == '3':
-            context['item_list'] = Item.objects.filter(subcategory_id=self.kwargs.get('pk')).order_by("price")
+            item_list = Item.objects.filter(
+                                            subcategory_id=sub
+                                            ).order_by("price")
+        context['item_list'] = item_list
         return context
 
 
