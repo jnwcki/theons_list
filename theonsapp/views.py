@@ -1,13 +1,15 @@
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-from django.views.generic import CreateView, ListView, DetailView, View
-from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView, RetrieveAPIView, \
-    ListCreateAPIView
+from django.views.generic import CreateView, ListView, DetailView, TemplateView
+from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView,\
+     CreateAPIView, RetrieveAPIView
 from theonsapp.forms import NewUserCreation
 from theonsapp.models import Item, SubCategory, Category, City, UserProfile
 from theonsapp.permissions import IsOwnerOrReadOnly
-from theonsapp.serializers import CategorySerializer, SubCategorySerializer, PostSerializer, UserSerializer
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from theonsapp.serializers import CategorySerializer, SubCategorySerializer, \
+    PostSerializer, UserSerializer
+from rest_framework.permissions import IsAuthenticated, \
+    IsAuthenticatedOrReadOnly
 
 
 class IndexView(ListView):
@@ -79,6 +81,10 @@ class SubCategoryItemView(ListView):
 
 class ItemDetailView(DetailView):
     model = Item
+
+
+class ListOfAPIViews(TemplateView):
+    template_name = 'api_list.html'
 
 
 class ListCategoryAPIView(ListAPIView):
