@@ -3,6 +3,7 @@ body {
    min-height: 100vh;
    flex-direction: column;
    background-color: #fff8e1;
+   font-family: 'MedievalSharp', cursive;
  }
 
  main {
@@ -12,4 +13,8 @@ body {
 
 nav {
 
+}
+
+.roboto-font {
+  font-family: 'Roboto';
 }

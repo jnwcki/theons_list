@@ -3,5 +3,8 @@
     <a href="{% url 'index' %}" class="breadcrumb" style="margin-left: 2%;">Home</a>
     <a href="{% url 'category_detail' category.pk %}" class="breadcrumb">{{ category }}</a>
     <a href="{% url 'index' %}" class="brand-logo right" style="margin-right: 2%;">Theon's List</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="{% url 'about' %}">About</a></li>
+    </ul>
   </div>
 </nav>

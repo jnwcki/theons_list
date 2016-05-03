@@ -3,11 +3,24 @@
 
 {% block content %}
 {% include 'index_navbar_include.html' %}
-<header>
-  <br>Hello world
+<header style="margin: 2%;">
+  <h4 class="roboto-font">Hello!</h4>
 </header>
 <main>
-  it's nice to be here
+  <p class="roboto-font">
+  About this site,
+  </p>
+  <p class="roboto-font">
+    Theon's List started out as a weekend assignment for week six of my cohort at The Iron Yard in Greenville.
+    The assignment was to build a clone of Craigslist replicating the ability of the user to list items, upload images and allow
+    sorting of listed items by price and date listed.
+  </p>
+  <p class="roboto-font">
+    Later in the cohort I revisited this assignment to add API functionality using the Django REST Framework. Most recently,
+    I picked this as one of my favorite sites that I have built and decided to expand on it with a much nicer interface and
+    some fun styling using Materialize CSS. If you have any questions feel free to drop me a line. You can get in touch
+    with me at jude.nowicki@gmail.com or visit my personal home page at <a href="http://judenowicki.com">judenowicki.com</a>.
+  </p>
 </main>
 {% endblock %}
 
