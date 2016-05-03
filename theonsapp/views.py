@@ -17,6 +17,10 @@ class IndexView(ListView):
     model = Category
 
 
+class AboutView(TemplateView):
+    template_name = 'about.html'
+
+
 class UserCreateView(CreateView):
     model = User
     form_class = NewUserCreation

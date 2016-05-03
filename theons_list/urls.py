@@ -10,7 +10,7 @@ from theonsapp.views import IndexView, UserCreateView, CategoryDetailView, \
                             DetailPostAPIView, CreatePostAPIView, \
                             RetrieveCategoryAPIView, \
                             RetrieveSubCategoryAPIView, UserCreateAPIView, \
-                            ListOfAPIViews
+                            ListOfAPIViews, AboutView
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^accounts/login/', auth_views.login, name='login'),
     url(r'^logout/', auth_views.logout_then_login, name='logout'),
     url(r'^signup/', UserCreateView.as_view(), name='signup'),
+    url(r'^about/$', AboutView.as_view(), name='about'),
     url(
         r'^media/(?P<path>.*)',
         "django.views.static.serve",

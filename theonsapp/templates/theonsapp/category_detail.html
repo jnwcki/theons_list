@@ -6,6 +6,7 @@
 
 {% block content %}
 <br><br>
+<h4>Subcategories in Category {{ category }}</h4>
 <div class="col l12">
   <div class="row">
     {% for sub in category.subcategory_set.all %}

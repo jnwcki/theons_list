@@ -1,11 +1,8 @@
-<nav>
-    <div class="nav-wrapper brown darken-4 z-depth-3">
-      <div class="col s12" style="margin: 2%;">
-        <a href="{% url 'index' %}" class="breadcrumb">Home</a>
-        <a href="{% url 'category_detail' subcategory.category.pk %}" class="breadcrumb">{{ subcategory.category }}</a>
-        <a href="{% url 'sub_item_list' subcategory.pk 1 %}" class="breadcrumb">{{ subcategory }}</a>
-        <a href="{% url 'index' %}" class="brand-logo right">Theon's List</a>
-
-      </div>
-    </div>
-  </nav>
+<nav class="brown darken-4">
+  <div class="nav-wrapper z-depth-3">
+    <a href="{% url 'index' %}" class="breadcrumb" style="margin-left: 2%;"> Home</a>
+    <a href="{% url 'category_detail' subcategory.category.pk %}" class="breadcrumb">{{ subcategory.category }}</a>
+    <a href="{% url 'sub_item_list' subcategory.pk 1 %}" class="breadcrumb">{{ subcategory }}</a>
+    <a href="{% url 'index' %}" class="brand-logo right" style="margin-right: 2%;">Theon's List</a>
+  </div>
+</nav>
