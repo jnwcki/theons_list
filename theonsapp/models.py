@@ -15,7 +15,7 @@ class City(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=50)
     photo = models.ImageField(upload_to='uploads/categories',
-                              default='uploads/default.png'
+                              default='uploads/default.jpg'
                               )
     description = models.CharField(
                                    max_length=255,
@@ -32,7 +32,7 @@ class SubCategory(models.Model):
     name = models.CharField(max_length=50)
     category = models.ForeignKey(Category)
     photo = models.ImageField(upload_to='uploads/subcategories',
-                              default='uploads/default.png'
+                              default='uploads/default.jpg'
                               )
     description = models.CharField(
                                    max_length=255,
@@ -60,7 +60,7 @@ class Item(models.Model):
     full_description = models.TextField()
     time_listed = models.DateTimeField(auto_now_add=True)
     photo = models.ImageField(upload_to='uploads',
-                              default='uploads/default.png')
+                              default='uploads/default.jpg')
     price = models.IntegerField()
     subcategory = models.ForeignKey(SubCategory)
 
