@@ -1,23 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
 {% include 'index_navbar_include.html' %}
-<br><br>
-<h4>Theon's List API Access Points</h4>
-<div class="collection">
-  <a href="{% url 'category_api_view' %}" class="collection-item">api/categories/</a>
-  <a href="{% url 'subcategory_api_view' %}" class="collection-item">api/subcategories/</a>
-  <a href="{% url 'user_create_view' %}" class="collection-item">api/user/</a>
-  <a href="{% url 'post_api_view' %}" class="collection-item">api/post/create/</a>
-</div>
-<br>
-<h4>API Access Points Requiring Primary Key</h4>
-<ul class="collection">
-  <li class="collection-item">api/subcategory/(pk)/posts/</li>
-  <li class="collection-item">api/category/(pk)/posts/</li>
-  <li class="collection-item">api/post/(pk)</li>
-  <li class="collection-item">api/category/(pk)/details/</li>
-  <li class="collection-item">api/subcategory/(pk)/details/</li>
-</ul>
+<header></header>
+<main>
+  <h4>Theon's List API Access Points</h4>
+  <div class="collection">
+    <a href="{% url 'category_api_view' %}" class="collection-item">api/categories/</a>
+    <a href="{% url 'subcategory_api_view' %}" class="collection-item">api/subcategories/</a>
+    <a href="{% url 'user_create_view' %}" class="collection-item">api/user/</a>
+    <a href="{% url 'post_api_view' %}" class="collection-item">api/post/create/</a>
+  </div>
+  <br>
+  <h4>API Access Points Requiring Primary Key</h4>
+  <ul class="collection">
+    <li class="collection-item">api/subcategory/(pk)/posts/</li>
+    <li class="collection-item">api/category/(pk)/posts/</li>
+    <li class="collection-item">api/post/(pk)</li>
+    <li class="collection-item">api/category/(pk)/details/</li>
+    <li class="collection-item">api/subcategory/(pk)/details/</li>
+  </ul>
+</main>
 {% endblock %}
 
 {% block footer %}

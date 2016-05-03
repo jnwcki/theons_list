@@ -18,21 +18,19 @@
   </div>
 </header>
 <main>
-
-
-<ul class="collection with-header">
-  <li class="collection-header"><h4>Items For Sale in {{ subcategory }}</h4></li>
-  {% for item in item_list %}
-    <li class="collection-item avatar">
-      <img src="{{ item.photo.url|default_if_none:"#" }}" alt="Photo" class="circle">
-      <span class="title">{{ item }}</span>
-      <p>${{ item.price }}<br>
-         {{ item.time_listed }}
-      </p>
-      <a href="{% url 'item_detail' item.pk %}" class="secondary-content"><i class="material-icons">grade</i></a>
-    </li>
-  {% endfor %}
-</ul>
+  <ul class="collection with-header">
+    <li class="collection-header"><h4>Items For Sale in {{ subcategory }}</h4></li>
+    {% for item in item_list %}
+      <li class="collection-item avatar">
+        <img src="{{ item.photo.url|default_if_none:"#" }}" alt="Photo" class="circle">
+        <span class="title">{{ item }}</span>
+        <p>${{ item.price }}<br>
+           {{ item.time_listed }}
+        </p>
+        <a href="{% url 'item_detail' item.pk %}" class="secondary-content"><i class="material-icons">grade</i></a>
+      </li>
+    {% endfor %}
+  </ul>
 </main>
 {% endblock %}
 

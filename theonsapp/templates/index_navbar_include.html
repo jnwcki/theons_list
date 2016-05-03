@@ -1,7 +1,7 @@
 <nav class="brown darken-4">
     <div class="nav-wrapper z-depth-3">
       <div class="col s12">
-        <a href="{% url 'index' %}" class="brand-logo left">Theon's List</a>
+        <a href="{% url 'index' %}" class="brand-logo left" style="margin-left: 2%;">Theon's List</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="{% url 'list_of_apis' %}">API List</a></li>
           {% if user.is_authenticated %}
