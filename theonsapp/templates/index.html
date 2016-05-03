@@ -6,28 +6,27 @@
 
 {% block content %}
 <header>
-  <div class="row"><br>
-    <div class="col s8 m8">
+    <div class="col s8 m8 center">
       <div class="card-panel grey">
-        <span class="white-text">Welcome to Theon's List, a medieval themed site listing items for sale.
+        <span class="white-text" style="font-size: 16pt;">Welcome to Theon's List, a medieval themed site listing items for sale.
+          <br>Log in, then navigate to a Subcategory to place your own listing.
         </span>
       </div>
     </div>
-  </div>
 </header>
 <main>
   <div class="col l12">
     <h2>Categories</h2>
     <div class="row">
       {% for category in object_list %}
-          <div class="col s12 m6 l4">
+          <div class="col s12 m6 l2">
             <div class="card z-depth-4">
               <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator" src="{{ category.photo.url }}">
                 <span class="card-title">{{ category }}</span>
               </div>
               <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">{{ category }}<i class="material-icons right">more_vert</i></span>
+                <span class="card-title activator grey-text text-darken-4">{{ category.description }}<i class="material-icons right">more_vert</i></span>
                 <p><a href="{% url 'category_detail' category.pk %}">Explore</a></p>
               </div>
               <div class="card-reveal">

@@ -18,3 +18,9 @@ nav {
 .roboto-font {
   font-family: 'Roboto';
 }
+
+.center {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}

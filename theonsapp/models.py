@@ -15,7 +15,14 @@ class City(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=50)
     photo = models.ImageField(upload_to='uploads/categories',
-                              default='uploads/default.png')
+                              default='uploads/default.png'
+                              )
+    description = models.CharField(
+                                   max_length=255,
+                                   blank=True,
+                                   null=True,
+                                   default='No Description'
+                                   )
 
     def __str__(self):
         return self.name
@@ -25,7 +32,14 @@ class SubCategory(models.Model):
     name = models.CharField(max_length=50)
     category = models.ForeignKey(Category)
     photo = models.ImageField(upload_to='uploads/subcategories',
-                              default='uploads/default.png')
+                              default='uploads/default.png'
+                              )
+    description = models.CharField(
+                                   max_length=255,
+                                   blank=True,
+                                   null=True,
+                                   default='No Description'
+                                   )
 
     def __str__(self):
         return self.name
